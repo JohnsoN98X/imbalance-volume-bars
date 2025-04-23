@@ -19,57 +19,55 @@ Instead, the threshold for forming a new bar is based purely on a **probabilisti
 
 ## 📐 Mathematical Formulation – Imbalance Volume Bars (IVB)
 
-At each time step $t$, the following calculations are performed:
-
-### 1. Directional Sign:
-$$
-\beta_t =
-\begin{cases}
-+1, & \text{if } P_t - P_{t-1} > 0 \\
--1, & \text{otherwise}
-\end{cases}
-$$
-Where $P_t$ is the closing price at time $t$.
+At each time step *t*, the following calculations are performed:
 
 ---
 
-### 2. Volume Imbalance:
-$$
-\theta_t = \beta_t \cdot V_t
-$$
-Where $V_t$ is the traded volume. $\theta_t$ captures signed trade pressure (buy/sell imbalance).
+### 1. Directional Sign
+
+βₜ = +1  if Pₜ − Pₜ₋₁ > 0  
+βₜ = −1  otherwise
+
+Where *Pₜ* is the closing price at time *t*.
 
 ---
 
-### 3. Cumulative Imbalance:
-$$
-\Theta_t = \sum_{i=s}^{t} \theta_i
-$$
-Where $s$ marks the start of the current bar.
+### 2. Volume Imbalance
+
+θₜ = βₜ × Vₜ
+
+Where *Vₜ* is the traded volume. θₜ captures signed trade pressure.
 
 ---
 
-### 4. Adaptive Threshold (Exponential Smoothing):
-$$
-\varepsilon_t = \alpha \cdot |\theta_t| + (1 - \alpha) \cdot \varepsilon_{t-1}
-$$
+### 3. Cumulative Imbalance
 
-Where:
-- $\alpha \in (0, 1)$ is the smoothing parameter
-- $\varepsilon_t$ is the dynamic imbalance threshold
+Θₜ = Σ₍ᵢ₌ₛ₎⁽ᵗ⁾ θᵢ
+
+Where *s* marks the start of the current bar.
 
 ---
 
-### 5. Bar Formation Condition:
-A new bar is formed when:
-$$
-|\Theta_t| > \varepsilon_t
-$$
+### 4. Adaptive Threshold (Exponential Smoothing)
 
-Once this condition is met:
-- A new OHLCV bar is created from interval $[s, t]$
-- $\Theta_t$ is reset to 0
-- Bar count continues from $t + 1$
+εₜ = α × |θₜ| + (1 − α) × εₜ₋₁
+
+Where:  
+- *α* ∈ (0, 1) is the smoothing parameter  
+- *εₜ* is the adaptive imbalance threshold
+
+---
+
+### 5. Bar Formation Condition
+
+A new bar is formed when:  
+  |Θₜ| > εₜ
+
+Once this is true:  
+- An OHLCV bar is created for [s, t]  
+- Θₜ is reset  
+- Next bar starts from t+1
+
 
 ---
 
