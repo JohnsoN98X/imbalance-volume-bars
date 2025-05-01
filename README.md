@@ -116,7 +116,7 @@ The notebook demonstrates how data sampled using Imbalance Volume Bars improves 
 - Tuning: `optuna`, with a time limit of 300 seconds per optimization.
 - Metrics: R², MSE, and cross-validation consistency.
 
-> 🔍 See: [`notebooks/03_XGB_Regression_Example.ipynb`](notebooks/XGB%20Regression%20Example.ipynb)
+> 🔍 See: [`notebooks/XGB_Regression Example.ipynb`](03_XGB_Regression_Example.ipynb)
 
 
 ## 📡 Data Source & Usage
