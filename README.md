@@ -10,7 +10,9 @@ Instead, the threshold for forming a new bar is based purely on a **probabilisti
 ### The project includes:
 
 - A single Python class for IVB bar construction (`src/`)
-- A Jupyter notebook demonstrating usage and a full comparative statistical analysis (`notebooks/`)
+- A Jupyter notebook demonstrating usage and a full comparative statistical analysis (`notebooks/Application Example`)
+- A Jupyter notebook demonstrating the performance improvement of XGBoost with IVB sampling (`notebooks/XGB Regression Example.ipynb`)
+
 
 > **Note**: All results and analysis are based on a single financial time series and a fixed decay factor of $\alpha = 0.9$.  
 > Explanations aim to showcase analytical approaches to interpreting sampling behavior — not to generalize across all assets.
@@ -103,6 +105,19 @@ pip install pandas numpy matplotlib seaborn statsmodels scipy
 - Core logic is optimized using NumPy for high-frequency scalability
 
 ---
+
+## 🔬 Applied Experiment – Model Performance with IVB
+
+To empirically assess the impact of IVB sampling on model accuracy, this project includes a controlled regression experiment using `XGBoostRegressor`.  
+The notebook demonstrates how data sampled using Imbalance Volume Bars improves predictive performance over time-based sampling.
+
+### 🧪 Setup:
+- Model: `XGBoostRegressor` with Bollinger Bands and ATR features.
+- Tuning: `optuna`, with a time limit of 300 seconds per optimization.
+- Metrics: R², MSE, and cross-validation consistency.
+
+> 🔍 See: [`notebooks/XGB Regression Example.ipynb`](notebooks/XGB%20Regression%20Example.ipynb)
+
 
 ## 📡 Data Source & Usage
 
