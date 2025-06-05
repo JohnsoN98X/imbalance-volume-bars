@@ -118,6 +118,39 @@ The notebook demonstrates how data sampled using Imbalance Volume Bars improves 
 
 > 🔍 See: [`notebooks/XGB_Regression Example.ipynb`](03_XGB_Regression_Example.ipynb)
 
+---
+
+## 🔬 Applied Experiment: LSTM on Time and Imbalance Volume Bars
+
+This experiment investigates the predictive capabilities of Long Short-Term Memory (LSTM) networks applied to two types of financial bar data:
+
+- **Time Bars (TIME):** Fixed-interval sampling of the price data.
+- **Imbalance Volume Bars (IVB):** Event-driven sampling based on volume imbalances, hypothesized to better capture market dynamics.
+
+### Methodology
+
+- **Data preparation:** Sliding windows of sequences generated from both bar types.
+- **Modeling:** LSTM architectures optimized using Optuna, with hyperparameters including number of layers, units per layer, kernel initializers, learning rate, and optimizer choice.
+- **Training:** Early stopping and checkpoint callbacks employed to mitigate overfitting.
+- **Evaluation:** Models assessed via Mean Squared Error (MSE), Mean Absolute Error (MAE), and \( R^2 \), alongside detailed residual diagnostics and statistical hypothesis testing.
+- **Baseline comparison:** Results contrasted with a naive martingale model (previous value prediction).
+
+### Key Findings
+
+- The IVB LSTM model **significantly outperformed** both the Time Bar LSTM and the martingale baseline, achieving multiple orders of magnitude improvement in error metrics.
+- Residual analysis showed that IVB LSTM residuals were more consistent with white noise assumptions, while Time Bar LSTM residuals exhibited autocorrelation and structure, indicating model misspecification.
+- Negative \( R^2 \) values highlighted the inherent difficulty of forecasting noisy, low-variance financial data, reinforcing the importance of complementary metrics and residual diagnostics.
+
+### Hardware and Computational Notes
+
+- Experiments were conducted on a consumer-grade Intel i9 CPU with RTX 4070 GPU.
+- Resource constraints limited training duration and hyperparameter search breadth, suggesting potential for further improvement with industrial-scale hardware.
+
+---
+
+This applied experiment underscores the importance of data representation in financial time series modeling and demonstrates the superior utility of volume-based bars in LSTM forecasting frameworks.
+
+---
 
 ## 📡 Data Source & Usage
 
