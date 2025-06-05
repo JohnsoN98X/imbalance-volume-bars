@@ -137,9 +137,11 @@ This experiment investigates the predictive capabilities of Long Short-Term Memo
 
 ### Key Findings
 
-- The IVB LSTM model **significantly outperformed** both the Time Bar LSTM and the martingale baseline, achieving multiple orders of magnitude improvement in error metrics.
-- Residual analysis showed that IVB LSTM residuals were more consistent with white noise assumptions, while Time Bar LSTM residuals exhibited autocorrelation and structure, indicating model misspecification.
-- Negative \( R^2 \) values highlighted the inherent difficulty of forecasting noisy, low-variance financial data, reinforcing the importance of complementary metrics and residual diagnostics.
+- Both the Time Bar LSTM and IVB LSTM models **significantly outperformed** their respective martingale baselines, reducing error metrics by factors of approximately 2 to 5.  
+- Contrary to initial expectations, the **Time Bar LSTM model achieved lower MSE and MAE than the IVB LSTM model**, though IVB LSTM showed a slightly better (less negative) \( R^2 \) score.  
+- Residual analysis revealed that IVB LSTM residuals appeared less structured and more consistent with white noise assumptions, while Time Bar LSTM residuals exhibited stronger autocorrelation and temporal structure, suggesting some remaining model misspecification.  
+- Negative \( R^2 \) values across models underscore the challenge of forecasting noisy, low-variance financial data, highlighting the importance of considering multiple metrics and thorough residual diagnostics for model evaluation.
+
 
 ### Hardware and Computational Notes
 
